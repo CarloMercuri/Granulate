@@ -1,0 +1,11 @@
+D:\dev\Granulated\GranuluateLib\Granulate\bin\Debug\Granulate.exe.config
+D:\dev\Granulated\GranuluateLib\Granulate\bin\Debug\Granulate.exe
+D:\dev\Granulated\GranuluateLib\Granulate\bin\Debug\Granulate.pdb
+D:\dev\Granulated\GranuluateLib\Granulate\bin\Debug\Granulate.xml
+D:\dev\Granulated\GranuluateLib\Granulate\obj\Debug\Granulate.vbprojAssemblyReference.cache
+D:\dev\Granulated\GranuluateLib\Granulate\obj\Debug\Granulate.Resources.resources
+D:\dev\Granulated\GranuluateLib\Granulate\obj\Debug\Granulate.vbproj.GenerateResource.cache
+D:\dev\Granulated\GranuluateLib\Granulate\obj\Debug\Granulate.vbproj.CoreCompileInputs.cache
+D:\dev\Granulated\GranuluateLib\Granulate\obj\Debug\Granulate.exe
+D:\dev\Granulated\GranuluateLib\Granulate\obj\Debug\Granulate.xml
+D:\dev\Granulated\GranuluateLib\Granulate\obj\Debug\Granulate.pdb

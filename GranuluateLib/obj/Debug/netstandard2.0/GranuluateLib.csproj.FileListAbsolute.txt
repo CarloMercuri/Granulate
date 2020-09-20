@@ -1,0 +1,6 @@
+D:\dev\Granulated\GranuluateLib\GranuluateLib\bin\Debug\netstandard2.0\GranuluateLib.deps.json
+D:\dev\Granulated\GranuluateLib\GranuluateLib\bin\Debug\netstandard2.0\GranuluateLib.dll
+D:\dev\Granulated\GranuluateLib\GranuluateLib\obj\Debug\netstandard2.0\GranuluateLib.csprojAssemblyReference.cache
+D:\dev\Granulated\GranuluateLib\GranuluateLib\obj\Debug\netstandard2.0\GranuluateLib.AssemblyInfoInputs.cache
+D:\dev\Granulated\GranuluateLib\GranuluateLib\obj\Debug\netstandard2.0\GranuluateLib.AssemblyInfo.cs
+D:\dev\Granulated\GranuluateLib\GranuluateLib\obj\Debug\netstandard2.0\GranuluateLib.csproj.CoreCompileInputs.cache

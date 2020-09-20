@@ -1,0 +1,13 @@
+D:\dev\Granulated\GranuluateLib\GranulateMainForm\bin\Debug\GranulateMainForm.exe.config
+D:\dev\Granulated\GranuluateLib\GranulateMainForm\bin\Debug\GranulateMainForm.exe
+D:\dev\Granulated\GranuluateLib\GranulateMainForm\bin\Debug\GranulateMainForm.pdb
+D:\dev\Granulated\GranuluateLib\GranulateMainForm\bin\Debug\GranulateLibrary.dll
+D:\dev\Granulated\GranuluateLib\GranulateMainForm\bin\Debug\System.Drawing.Common.dll
+D:\dev\Granulated\GranuluateLib\GranulateMainForm\bin\Debug\GranulateLibrary.pdb
+D:\dev\Granulated\GranuluateLib\GranulateMainForm\obj\Debug\GranulateMainForm.csprojAssemblyReference.cache
+D:\dev\Granulated\GranuluateLib\GranulateMainForm\obj\Debug\GranulateMainForm.Properties.Resources.resources
+D:\dev\Granulated\GranuluateLib\GranulateMainForm\obj\Debug\GranulateMainForm.csproj.GenerateResource.cache
+D:\dev\Granulated\GranuluateLib\GranulateMainForm\obj\Debug\GranulateMainForm.csproj.CoreCompileInputs.cache
+D:\dev\Granulated\GranuluateLib\GranulateMainForm\obj\Debug\GranulateMainForm.csproj.CopyComplete
+D:\dev\Granulated\GranuluateLib\GranulateMainForm\obj\Debug\GranulateMainForm.exe
+D:\dev\Granulated\GranuluateLib\GranulateMainForm\obj\Debug\GranulateMainForm.pdb
