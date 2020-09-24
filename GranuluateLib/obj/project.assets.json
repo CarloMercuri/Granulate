@@ -39,7 +39,7 @@
   },
   "libraries": {
     "Microsoft.NETCore.Platforms/1.1.0": {
-      "sha512": "a/iSwnRZb+LHFk49hQOyThh/ZNC3vsbZsF65XwQIb863qF6msmhdQtxGXFL28Ob2NsCz/drEj28BJd/YPpLRBg==",
+      "sha512": "kz0PEW2lhqygehI/d6XsPCQzD7ff7gUJaVGPVETX611eadGsA3A877GdSlU0LRVMCTH/+P3o2iDTak+S08V2+A==",
       "type": "package",
       "path": "microsoft.netcore.platforms/1.1.0",
       "files": [
@@ -228,23 +228,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\cmerc\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\CarloMercuri\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\dev\\Granulated\\GranuluateLib\\GranuluateLib\\GranulateLibrary.csproj",
+      "projectUniqueName": "C:\\VSProjects\\Granulate_Editor\\GranuluateLib\\GranuluateLib\\GranulateLibrary.csproj",
       "projectName": "GranulateLibrary",
-      "projectPath": "D:\\dev\\Granulated\\GranuluateLib\\GranuluateLib\\GranulateLibrary.csproj",
-      "packagesPath": "C:\\Users\\cmerc\\.nuget\\packages\\",
-      "outputPath": "D:\\dev\\Granulated\\GranuluateLib\\GranuluateLib\\obj\\",
+      "projectPath": "C:\\VSProjects\\Granulate_Editor\\GranuluateLib\\GranuluateLib\\GranulateLibrary.csproj",
+      "packagesPath": "C:\\Users\\CarloMercuri\\.nuget\\packages\\",
+      "outputPath": "C:\\VSProjects\\Granulate_Editor\\GranuluateLib\\GranuluateLib\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\cmerc\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\CarloMercuri\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -289,7 +285,7 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.400\\RuntimeIdentifierGraph.json"
       }
     }
   }

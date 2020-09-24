@@ -13,6 +13,7 @@ namespace GranulateLibrary
         /// </summary>
         public static void UndoSequential()
         {
+            Console.WriteLine(ProjectManager.openProjects[ProjectManager.CurrentProject].ActionIndex);
             // Checks to see if we have some actions saved up overall etc
             if(ProjectManager.openProjects[ProjectManager.CurrentProject].ActionIndex >= GeneralSettings.MaxHistoryCount 
                 || ProjectManager.openProjects[ProjectManager.CurrentProject].ActionIndex >=

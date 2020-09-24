@@ -14,7 +14,8 @@ namespace GranulateMainForm
 {
     public class AnimationWindow
     {
-        PictureBox pictureBox;
+        public PictureBox PB_Main;
+        public PictureBox PB_Background;
         public bool running;
 
 
@@ -47,15 +48,16 @@ namespace GranulateMainForm
             timer = new Stopwatch();
             timer.Start();
             running = false;
-            pictureBox = pBox;
+            PB_Main = pBox;
+            PB_Main.Paint += AnimationPB_Paint;
             sourceRect = new Rectangle(0, 0, imageSize, imageSize);
-            destRect = new Rectangle(0, 0, pictureBox.Width, pictureBox.Height);
+            destRect = new Rectangle(0, 0, PB_Main.Width, PB_Main.Height);
             Fps = fps;
             frame = 0;
 
             if (ProjectManager.openProjects[ProjectManager.CurrentProject].bitmaps[0] != null)
             {
-                pictureBox.Invalidate();
+                PB_Main.Invalidate();
             }
         }
 
@@ -67,7 +69,7 @@ namespace GranulateMainForm
             running = false;
             frame = 0;
             //pictureBox.Image = ProjectManager.openProjects[ProjectManager.CurrentProject].bitmaps[frame];
-            pictureBox.Invalidate();
+            PB_Main.Invalidate();
         }
 
         /// <summary>
@@ -102,7 +104,7 @@ namespace GranulateMainForm
                     if (timer.ElapsedMilliseconds > timeStamp + frameDelay)
                     {
                         timeStamp = timer.ElapsedMilliseconds;
-                        pictureBox.Invalidate();
+                        PB_Main.Invalidate();
                         frame++;
 
                         if (frame >= ProjectManager.openProjects[ProjectManager.CurrentProject].bitmaps.Count)

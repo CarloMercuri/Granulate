@@ -1,17 +1,17 @@
-﻿using System;
+﻿using GranulateLibrary.EventSystem;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
-
-
+using System.Runtime.CompilerServices;
 
 namespace GranulateLibrary
 {
     public static class ImageEditing
     {
-        
-        
+
+        public static event EventHandler<PixelsModificationEventArgs> ImageModifiedEvent;
 
         /// <summary>
         /// Returns a bitmap with a SQUARE checkered background image, of the specified size
@@ -62,6 +62,7 @@ namespace GranulateLibrary
         /// <param name="pMod"></param>
         public static void UndoPixelModification(ActionPixelModification pMod)
         {
+            //Console.WriteLine("undo");
             // go through all the pixels and apply the old color value
             for (int i = 0; i < pMod.pixelsList.Count; i++)
             {
@@ -69,10 +70,11 @@ namespace GranulateLibrary
                     .SetPixel(pMod.pixelsList[i].pixelLoc.x, pMod.pixelsList[i].pixelLoc.y,
                     pMod.pixelsList[i].oldColor);
             }
-            
+
             // FRONTEND
-            //GUI.ActionPixelsModified(pMod.pixelsList, pMod.AffectedBitmapIndex, true);
-            
+            // FRONTEND. Fire the event that says "Pixels have been modified, you might have to update something. In reverse"
+            ImageModifiedEvent?.Invoke(null, new PixelsModificationEventArgs(pMod.pixelsList, pMod.AffectedBitmapIndex, true));
+
 
         }
 
@@ -82,18 +84,19 @@ namespace GranulateLibrary
         /// <param name="pixelList"></param>
         /// <param name="projectID"></param>
         /// <param name="currentImage"></param>
-        public static void ModifyPixels(List<PixelModification> pixelList, int projectID, int currentImage)
+        public static void ModifyPixels(List<PixelModification> pixelsList, int projectID, int currentImage)
         {
-            foreach (PixelModification pMod in pixelList)
+            foreach (PixelModification pMod in pixelsList)
             {
                 ProjectManager.openProjects[projectID].bitmaps[pMod.bitmapID].SetPixel(
                     pMod.pixelLoc.x, pMod.pixelLoc.y, pMod.newColor);
             }
 
-            // FRONTEND 
-            //GUI.ActionPixelsModified(pixelList, currentImage, false);
+            // FRONTEND. Fire the event that says "Pixels have been modified, you might have to update something. Not in reverse"
+            ImageModifiedEvent?.Invoke(null, new PixelsModificationEventArgs(pixelsList, currentImage, false));
 
         }
+
 
         /// <summary>
         /// Returns a new version of the bitmap, zoomed to the desired amount

@@ -7,3 +7,12 @@ D:\dev\Granulated\GranuluateLib\GranuluateLib\obj\Debug\netstandard2.0\Granulate
 D:\dev\Granulated\GranuluateLib\GranuluateLib\obj\Debug\netstandard2.0\GranulateLibrary.csproj.CoreCompileInputs.cache
 D:\dev\Granulated\GranuluateLib\GranuluateLib\obj\Debug\netstandard2.0\GranulateLibrary.dll
 D:\dev\Granulated\GranuluateLib\GranuluateLib\obj\Debug\netstandard2.0\GranulateLibrary.pdb
+C:\VSProjects\Granulate_Editor\GranuluateLib\GranuluateLib\bin\Debug\netstandard2.0\GranulateLibrary.deps.json
+C:\VSProjects\Granulate_Editor\GranuluateLib\GranuluateLib\bin\Debug\netstandard2.0\GranulateLibrary.dll
+C:\VSProjects\Granulate_Editor\GranuluateLib\GranuluateLib\bin\Debug\netstandard2.0\GranulateLibrary.pdb
+C:\VSProjects\Granulate_Editor\GranuluateLib\GranuluateLib\obj\Debug\netstandard2.0\GranulateLibrary.csprojAssemblyReference.cache
+C:\VSProjects\Granulate_Editor\GranuluateLib\GranuluateLib\obj\Debug\netstandard2.0\GranulateLibrary.AssemblyInfoInputs.cache
+C:\VSProjects\Granulate_Editor\GranuluateLib\GranuluateLib\obj\Debug\netstandard2.0\GranulateLibrary.AssemblyInfo.cs
+C:\VSProjects\Granulate_Editor\GranuluateLib\GranuluateLib\obj\Debug\netstandard2.0\GranulateLibrary.csproj.CoreCompileInputs.cache
+C:\VSProjects\Granulate_Editor\GranuluateLib\GranuluateLib\obj\Debug\netstandard2.0\GranulateLibrary.dll
+C:\VSProjects\Granulate_Editor\GranuluateLib\GranuluateLib\obj\Debug\netstandard2.0\GranulateLibrary.pdb

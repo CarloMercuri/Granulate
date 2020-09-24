@@ -11,3 +11,17 @@ D:\dev\Granulated\GranuluateLib\GranulateMainForm\obj\Debug\GranulateMainForm.cs
 D:\dev\Granulated\GranuluateLib\GranulateMainForm\obj\Debug\GranulateMainForm.csproj.CopyComplete
 D:\dev\Granulated\GranuluateLib\GranulateMainForm\obj\Debug\GranulateMainForm.exe
 D:\dev\Granulated\GranuluateLib\GranulateMainForm\obj\Debug\GranulateMainForm.pdb
+C:\VSProjects\Granulate_Editor\GranuluateLib\GranulateMainForm\bin\Debug\GranulateMainForm.exe.config
+C:\VSProjects\Granulate_Editor\GranuluateLib\GranulateMainForm\bin\Debug\GranulateMainForm.exe
+C:\VSProjects\Granulate_Editor\GranuluateLib\GranulateMainForm\bin\Debug\GranulateMainForm.pdb
+C:\VSProjects\Granulate_Editor\GranuluateLib\GranulateMainForm\bin\Debug\GranulateLibrary.dll
+C:\VSProjects\Granulate_Editor\GranuluateLib\GranulateMainForm\bin\Debug\System.Drawing.Common.dll
+C:\VSProjects\Granulate_Editor\GranuluateLib\GranulateMainForm\bin\Debug\GranulateLibrary.pdb
+C:\VSProjects\Granulate_Editor\GranuluateLib\GranulateMainForm\obj\Debug\GranulateMainForm.csprojAssemblyReference.cache
+C:\VSProjects\Granulate_Editor\GranuluateLib\GranulateMainForm\obj\Debug\GranulateMainForm.Properties.Resources.resources
+C:\VSProjects\Granulate_Editor\GranuluateLib\GranulateMainForm\obj\Debug\GranulateMainForm.csproj.GenerateResource.cache
+C:\VSProjects\Granulate_Editor\GranuluateLib\GranulateMainForm\obj\Debug\GranulateMainForm.csproj.CoreCompileInputs.cache
+C:\VSProjects\Granulate_Editor\GranuluateLib\GranulateMainForm\obj\Debug\GranulateMainForm.csproj.CopyComplete
+C:\VSProjects\Granulate_Editor\GranuluateLib\GranulateMainForm\obj\Debug\GranulateMainForm.exe
+C:\VSProjects\Granulate_Editor\GranuluateLib\GranulateMainForm\obj\Debug\GranulateMainForm.pdb
+C:\VSProjects\Granulate_Editor\GranuluateLib\GranulateMainForm\obj\Debug\GranulateMainForm.GranulateMF.resources

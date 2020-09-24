@@ -1,4 +1,5 @@
 ﻿using GranulateLibrary;
+using GranulateLibrary.EventSystem;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -23,6 +24,9 @@ namespace GranulateMainForm
         public static Panel panel_Bottom;
         private static Label label_Coords;
 
+        // Colors
+        private static Color Color_Default_DarkGray = Color.FromArgb(255, 150, 150, 150);
+
         // Controls
         private static bool isMouseDown;
         private static Vec2 lastMouseClickLoc;
@@ -37,12 +41,12 @@ namespace GranulateMainForm
         private static Bitmap smallPreviewBackground;
 
         // Main Canvas
-        private static Bitmap test;
         private static bool MainImage_IsMouseInside;
         private static PictureBox MainImage_PB_Background;
         public static int currentZoom = 1;
         public static int standardZoom;
         private static Bitmap mainBackground_Bitmap;
+        private static bool MainImage_IsGridEnabled = true;
 
         // Color selection Palette
         private static Vec2 PaletteSelectionLoc;
@@ -66,11 +70,15 @@ namespace GranulateMainForm
         private static List<Button> toolsButtons;
 
         // Animation window
-        public static PictureBox AnimationWindow_PB;
-        public static Panel AnimationWindow_Panel;
+        private static PictureBox PB_AnimationWindow_Main;
+        private static PictureBox PB_AnimationWindow_BG;
+        private static Panel Panel_AnimationWindow;
+        private static int animationWindowSize = 180;
         private static AnimationWindow _animWindow;
         public static int animationWindowImageIndex;
         private static Thread animationWindowthread;
+        private static Bitmap playPauseButtonImage;
+        private static Button playPauseButton;
 
         // Preview windows
         private static List<PreviewWindow> previewWindows = new List<PreviewWindow>();
@@ -80,11 +88,24 @@ namespace GranulateMainForm
 
         public static void InitializeGUI()
         {
-            test = new Bitmap(Path.Combine(Environment.CurrentDirectory,
-                "Textures/Pictures/test.png"));
+            // Load assets
+            plusSign = new Bitmap(Path.Combine(Environment.CurrentDirectory,
+               "Textures/Icons/plus2.png"));
+            playPauseButtonImage = new Bitmap(Path.Combine(Environment.CurrentDirectory,
+               "Textures/Icons/Animation/play_pause_25.png"));
+
             smallPreviewBackground = ImageEditing.CreateBackgroundImage(75);
             mainBackground_Bitmap = ImageEditing.CreateBackgroundImage(1600);
             CreateNewProject(32, 32, ProjectType.SpriteAnimation);
+
+            MainImagePanel = new Panel();
+            mainForm.Controls.Add(MainImagePanel);
+            MainImagePanel.Location = new Point(400, 142);
+            //MainImagePanel.Anchor = (AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right);
+            MainImagePanel.Size = new Size(1200, 800);
+            MainImagePanel.BackColor = Color_Default_DarkGray;
+            MainImagePanel.BorderStyle = BorderStyle.Fixed3D;
+            
 
             MainImage_PB_Background = new PictureBox();
             MainImage_PB_Main = new PictureBox();
@@ -106,6 +127,7 @@ namespace GranulateMainForm
             MainImage_PB_Main.MouseUp += new MouseEventHandler(MainPB_MouseUp);
             MainImage_PB_Main.MouseMove += new MouseEventHandler(MainPB_MouseMove);
 
+
             MainImage_PB_Main.MouseEnter += new EventHandler(MainPB_MouseEnter);
             MainImage_PB_Main.MouseLeave += new EventHandler(MainPB_MouseLeave);
             MainImage_PB_Main.BorderStyle = BorderStyle.None;
@@ -115,9 +137,10 @@ namespace GranulateMainForm
             ZoomMainImage(1);
             MainImage_PB_Main.Invalidate();
 
-            plusSign = new Bitmap(Path.Combine(Environment.CurrentDirectory,
-                "Textures/Icons/plus2.png"));
+           
 
+            // Subscribe to events
+            ImageEditing.ImageModifiedEvent += PixelsModifiedEvent;
 
 
 
@@ -143,6 +166,17 @@ namespace GranulateMainForm
 
             InitializeToolBar();
             InitializeColorSelector();
+            
+        }
+
+        public static void InitializeTestGUI()
+        {
+            //ImageEditing.RaiseImageModifiedEvent += PixelsModifiedEvent;
+        }
+
+        private static void PixelsModifiedEvent(object sender, PixelsModificationEventArgs p)
+        {
+            ActionPixelsModified(p.pixelModificationList, p.BitmapID, p.IsReverse);
         }
 
         /// <summary>
@@ -374,15 +408,43 @@ namespace GranulateMainForm
 
         private static void InitializeAnimationWindow()
         {
-            _animWindow = new AnimationWindow(AnimationWindow_PB, 5, 32);
+            Panel_AnimationWindow = new Panel();
+            mainForm.Controls.Add(Panel_AnimationWindow);
+            Panel_AnimationWindow.Anchor = (AnchorStyles.Right | AnchorStyles.Top);
+            Panel_AnimationWindow.Size = new Size(195, 220);
+            Panel_AnimationWindow.BackColor = Color_Default_DarkGray;
+            Panel_AnimationWindow.BorderStyle = BorderStyle.Fixed3D;
+            Panel_AnimationWindow.Location = new Point(700, 12);
+
+
+            PB_AnimationWindow_BG = new PictureBox();
+            Panel_AnimationWindow.Controls.Add(PB_AnimationWindow_BG);
+            PB_AnimationWindow_BG.Location = new Point(5, 5);
+            PB_AnimationWindow_BG.Size = new Size(animationWindowSize, animationWindowSize);
+            PB_AnimationWindow_BG.Image = ImageEditing.CreateBackgroundImage(animationWindowSize);
+
+            PB_AnimationWindow_Main = new PictureBox();
+            PB_AnimationWindow_Main.BorderStyle = BorderStyle.Fixed3D;
+            PB_AnimationWindow_BG.Controls.Add(PB_AnimationWindow_Main);
+            PB_AnimationWindow_Main.Size = PB_AnimationWindow_BG.Size;
+            PB_AnimationWindow_Main.BackColor = Color.Transparent;
+
+
+            playPauseButton = new Button();
+            Panel_AnimationWindow.Controls.Add(playPauseButton);
+            playPauseButton.Size = new Size(26, 26);
+            playPauseButton.Location = new Point(5, 187);
+            playPauseButton.Image = playPauseButtonImage;
+            playPauseButton.Name = "Anim_Button_Play";
+            //playPauseButton.FlatStyle = FlatStyle.Flat;
+
+
+            _animWindow = new AnimationWindow(PB_AnimationWindow_Main, 5, 32);
             animationWindowthread = new Thread(new ThreadStart(_animWindow.AnimationLoop));
             animationWindowthread.Start();
 
-            AnimationWindow_PB.Size = AnimationWindow_Panel.Size;
-            AnimationWindow_PB.Location = new Point(0, 0);
-
-            AnimationWindow_PB.Image = ImageEditing.CreateBackgroundImage(160);
-            AnimationWindow_PB.Paint += new PaintEventHandler(_animWindow.AnimationPB_Paint);
+            //AnimationWindow_PB.Paint += new PaintEventHandler(_animWindow.AnimationPB_Paint);
+            
 
         }
 
@@ -390,6 +452,19 @@ namespace GranulateMainForm
         {
             // For sharpness
             e.Graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
+
+            if(MainImage_IsGridEnabled)
+            {
+                int middleLoc = MainImage_PB_Main.Width / 2;
+
+                e.Graphics.DrawLine(new Pen(new SolidBrush(Color.Red)),
+                    new Point(middleLoc, 0),
+                    new Point(middleLoc, MainImage_PB_Main.Height));
+
+                e.Graphics.DrawLine(new Pen(new SolidBrush(Color.Red)),
+                    new Point(0, middleLoc),
+                    new Point(MainImage_PB_Main.Width, middleLoc));
+            }
 
             // Show the paint rectangle
             if (MainImage_IsMouseInside)
@@ -562,8 +637,11 @@ namespace GranulateMainForm
         /// <param name="index"></param>
         public static void UpdatePreviewWindow(int index)
         {
-            previewWindows[index].pb_Main.Image = ProjectManager.openProjects[
-                   ProjectManager.CurrentProject].bitmaps[index];
+            // Check if the preview windows list contains index, and if it's been instantiated
+            if(previewWindows.Count >= index)
+                if(previewWindows[index].pb_Main != null)
+                    previewWindows[index].pb_Main.Image = ProjectManager.openProjects[
+                    ProjectManager.CurrentProject].bitmaps[index];
         }
 
         private static void UseTool(MouseEventArgs m, bool newAction)
@@ -717,7 +795,7 @@ namespace GranulateMainForm
 
         }
 
-        public static void Form1_KeyDown(object sender, KeyEventArgs e)
+        public static void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
             {
