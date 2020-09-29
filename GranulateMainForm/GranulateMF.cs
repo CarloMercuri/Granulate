@@ -24,7 +24,7 @@ namespace GranulateMainForm
         private void InitializeInitialStartup()
         {
             ToolsManager.LoadToolsList();
-
+            Application.ApplicationExit += new EventHandler(GUI.OnApplicationExit);
             GUI.mainForm = this;
             GUI.panel_Bottom = panel_Bottom;
             GUI.panel_ProjectImageList = panel_ProjectImageList;

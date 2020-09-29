@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "tZ7UxD5Hdq6E/HTi0Tr8jMIL8KBbJ3/KAG2zgCu1sr2Yru4VRTVI2VvKgxeCtnpjUGuYbqWJXDMVwWRgZpb1jw==",
+  "dgSpecHash": "YECXNfFcDsSjarhhzmO4xwp1YzNOteVKdcAPYFjYoGahlyUMb3mkoWKqHclKKa9impCHeSSrWoGzJ6NPYk9/dQ==",
   "success": true,
-  "projectFilePath": "C:\\VSProjects\\Granulate_Editor\\GranuluateLib\\GranuluateLib\\GranulateLibrary.csproj",
+  "projectFilePath": "D:\\dev\\Granulate\\GranuluateLib\\GranulateLibrary.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\CarloMercuri\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
-    "C:\\Users\\CarloMercuri\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
-    "C:\\Users\\CarloMercuri\\.nuget\\packages\\system.drawing.common\\4.7.0\\system.drawing.common.4.7.0.nupkg.sha512"
+    "C:\\Users\\cmerc\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\cmerc\\.nuget\\packages\\system.drawing.common\\4.7.0\\system.drawing.common.4.7.0.nupkg.sha512"
   ],
   "logs": []
 }

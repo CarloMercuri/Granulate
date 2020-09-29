@@ -55,7 +55,7 @@ namespace GranulateMainForm
             Fps = fps;
             frame = 0;
 
-            if (ProjectManager.openProjects[ProjectManager.CurrentProject].bitmaps[0] != null)
+            if (ProjectManager.openProjects[ProjectManager.CurrentProject].Bitmaps[0] != null)
             {
                 PB_Main.Invalidate();
             }
@@ -86,7 +86,7 @@ namespace GranulateMainForm
             p.Graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
 
             p.Graphics.DrawImage(
-                ProjectManager.openProjects[ProjectManager.CurrentProject].bitmaps[frame],
+                ProjectManager.openProjects[ProjectManager.CurrentProject].Bitmaps[frame],
                 destRect,
                 sourceRect,
                 GraphicsUnit.Pixel);
@@ -107,7 +107,7 @@ namespace GranulateMainForm
                         PB_Main.Invalidate();
                         frame++;
 
-                        if (frame >= ProjectManager.openProjects[ProjectManager.CurrentProject].bitmaps.Count)
+                        if (frame >= ProjectManager.openProjects[ProjectManager.CurrentProject].Bitmaps.Count)
                         {
                             frame = 0;
                         }

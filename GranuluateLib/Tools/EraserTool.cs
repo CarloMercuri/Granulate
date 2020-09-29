@@ -73,7 +73,7 @@ namespace GranulateLibrary
             }
 
 
-            Size imgSize = ProjectManager.openProjects[ProjectManager.CurrentProject].bitmaps[currentImage].Size;
+            Size imgSize = ProjectManager.openProjects[ProjectManager.CurrentProject].Bitmaps[currentImage].Size;
 
             Vec2 tempPoint;
             int size = ToolSize - 1;
@@ -98,7 +98,7 @@ namespace GranulateLibrary
                             absoluteModifiedPixels.Add(tempPoint);
 
                             modifiedPixels.Add(new PixelModification(tempPoint, ProjectManager.openProjects[
-                                ProjectManager.CurrentProject].bitmaps[currentImage].GetPixel(tempPoint.x, tempPoint.y),
+                                ProjectManager.CurrentProject].Bitmaps[currentImage].GetPixel(tempPoint.x, tempPoint.y),
                                 Color.Transparent, currentImage));
                         }
                     }

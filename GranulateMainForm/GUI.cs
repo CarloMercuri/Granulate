@@ -145,7 +145,7 @@ namespace GranulateMainForm
 
 
 
-            switch (ProjectManager.openProjects[ProjectManager.CurrentProject].projectType)
+            switch (ProjectManager.openProjects[ProjectManager.CurrentProject].ProjectType)
             {
                 case ProjectType.SpriteAnimation:
                     InitializeAnimationWindow();
@@ -326,7 +326,7 @@ namespace GranulateMainForm
             ProjectManager.AddNewProjectImage();
 
             // Add a new preview window
-            CreateNewPreviewPB(ProjectManager.openProjects[ProjectManager.CurrentProject].bitmaps.Count - 1);
+            CreateNewPreviewPB(ProjectManager.openProjects[ProjectManager.CurrentProject].Bitmaps.Count - 1);
 
             // Move the preview window's plus button accordingly
             plusButton.Location = new Point(10 + previewWindows.Count * 85, 30);
@@ -338,8 +338,8 @@ namespace GranulateMainForm
             panel_ProjectImageList.Location.Y + plusButton.Location.Y * 2 + 4);
 
             // Show the new image in the main picturebox 
-            LoadNewMainImage(ProjectManager.openProjects[ProjectManager.CurrentProject].bitmaps[
-                ProjectManager.openProjects[ProjectManager.CurrentProject].bitmaps.Count - 1], currentZoom);
+            LoadNewMainImage(ProjectManager.openProjects[ProjectManager.CurrentProject].Bitmaps[
+                ProjectManager.openProjects[ProjectManager.CurrentProject].Bitmaps.Count - 1], currentZoom);
         }
 
 
@@ -372,7 +372,7 @@ namespace GranulateMainForm
             ProjectManager.CreateNewProject(width, height, pType);
 
             // Sets the current zoom accordingly to the new image size
-            currentZoom = (int)Math.Floor(800M / ProjectManager.openProjects[ProjectManager.CurrentProject].bitmaps[0].Width);
+            currentZoom = (int)Math.Floor(800M / ProjectManager.openProjects[ProjectManager.CurrentProject].Bitmaps[0].Width);
 
             // Maintenance
             standardZoom = currentZoom;
@@ -390,7 +390,7 @@ namespace GranulateMainForm
             previewWindows[ProjectManager.SelectedBitmap].backPanel.BackColor = Color.Black;
 
             // Load the new image
-            LoadNewMainImage(ProjectManager.openProjects[ProjectManager.CurrentProject].bitmaps[ProjectManager.SelectedBitmap], standardZoom);
+            LoadNewMainImage(ProjectManager.openProjects[ProjectManager.CurrentProject].Bitmaps[ProjectManager.SelectedBitmap], standardZoom);
             currentZoom = standardZoom;
 
             // Right now it recenters the image when selecting one. Might change.
@@ -537,7 +537,7 @@ namespace GranulateMainForm
 
             previewWindows[index].pb_Main.Size = previewWindows[index].pb_Background.Size;
             previewWindows[index].pb_Background.Image = smallPreviewBackground;
-            previewWindows[index].pb_Main.Image = ProjectManager.openProjects[ProjectManager.CurrentProject].bitmaps[index];
+            previewWindows[index].pb_Main.Image = ProjectManager.openProjects[ProjectManager.CurrentProject].Bitmaps[index];
 
             previewWindows[ProjectManager.SelectedBitmap].backPanel.BackColor = Color.Transparent;
             ProjectManager.SelectedBitmap = index;
@@ -569,12 +569,12 @@ namespace GranulateMainForm
             currentZoom += amount;
 
             // Because the MAIN PB is under control of the MAIN BG PB, we need to resize the BG PB first, same with moving.
-            MainImage_PB_Background.Size = new Size(ProjectManager.openProjects[ProjectManager.CurrentProject].bitmaps[ProjectManager.SelectedBitmap].Width * currentZoom,
-                ProjectManager.openProjects[ProjectManager.CurrentProject].bitmaps[ProjectManager.SelectedBitmap].Height * currentZoom);
+            MainImage_PB_Background.Size = new Size(ProjectManager.openProjects[ProjectManager.CurrentProject].Bitmaps[ProjectManager.SelectedBitmap].Width * currentZoom,
+                ProjectManager.openProjects[ProjectManager.CurrentProject].Bitmaps[ProjectManager.SelectedBitmap].Height * currentZoom);
             MainImage_PB_Main.Size = MainImage_PB_Background.Size;
 
             // Assign the new zoomed image
-            MainImage_PB_Main.Image = ImageEditing.GetZoomedImage(ProjectManager.openProjects[ProjectManager.CurrentProject].bitmaps[ProjectManager.SelectedBitmap], currentZoom);
+            MainImage_PB_Main.Image = ImageEditing.GetZoomedImage(ProjectManager.openProjects[ProjectManager.CurrentProject].Bitmaps[ProjectManager.SelectedBitmap], currentZoom);
 
             // Recenter it
             RecenterMainPB();
@@ -592,7 +592,7 @@ namespace GranulateMainForm
             }
 
             // If the preview window is active, update it. Should add Animation window too
-            if (ProjectManager.openProjects[ProjectManager.CurrentProject].projectType == ProjectType.SpriteAnimation)
+            if (ProjectManager.openProjects[ProjectManager.CurrentProject].ProjectType == ProjectType.SpriteAnimation)
             {
                 UpdatePreviewWindow(bitmapID);
             }
@@ -641,7 +641,7 @@ namespace GranulateMainForm
             if(previewWindows.Count >= index)
                 if(previewWindows[index].pb_Main != null)
                     previewWindows[index].pb_Main.Image = ProjectManager.openProjects[
-                    ProjectManager.CurrentProject].bitmaps[index];
+                    ProjectManager.CurrentProject].Bitmaps[index];
         }
 
         private static void UseTool(MouseEventArgs m, bool newAction)
@@ -816,7 +816,24 @@ namespace GranulateMainForm
                     break;
 
                 case Keys.J:
+                    
+                    Bitmap bmp2 = new Bitmap(1600, 1600);
 
+                    Rectangle rects = new Rectangle(200, 200, 400, 400);
+                    
+                    //Brush bru = new SolidBrush(Color.Red);
+                    Stopwatch watch2 = Stopwatch.StartNew();
+                    //Bitmap testBmp;
+
+
+                    for (int i = 0; i < 100; i++)
+                    {
+                        //testBmp = ImageEditing.CreateBackgroundImage(160, false);
+                        ImageEditing.FillRectangle(Color.Red, rects, ref bmp2);
+                    }
+
+                    watch2.Stop();
+                    Console.WriteLine(watch2.ElapsedMilliseconds);
                     break;
 
                 case Keys.Z:
@@ -970,6 +987,11 @@ namespace GranulateMainForm
                 ToolsManager.SelectedTool].SelectedButtonImage;
 
 
+        }
+
+        public static void OnApplicationExit(object sender, EventArgs e)
+        {
+            animationWindowthread.Abort();
         }
     }
 }

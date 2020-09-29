@@ -73,7 +73,7 @@ namespace GranulateLibrary
             }
 
  
-            Size imgSize = ProjectManager.openProjects[ProjectManager.CurrentProject].bitmaps[currentImage].Size;
+            Size imgSize = ProjectManager.openProjects[ProjectManager.CurrentProject].Bitmaps[currentImage].Size;
 
             foreach (Vec2 point in points)
             {
@@ -92,7 +92,7 @@ namespace GranulateLibrary
                    
 
                     modifiedPixels.Add(new PixelModification(point, ProjectManager.openProjects[
-                        ProjectManager.CurrentProject].bitmaps[currentImage].GetPixel(point.x, point.y), ProjectManager.Color_Main, currentImage));
+                        ProjectManager.CurrentProject].Bitmaps[currentImage].GetPixel(point.x, point.y), ProjectManager.Color_Main, currentImage));
                 }
 
 

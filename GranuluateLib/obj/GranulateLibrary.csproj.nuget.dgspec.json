@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\VSProjects\\Granulate_Editor\\GranuluateLib\\GranuluateLib\\GranulateLibrary.csproj": {}
+    "D:\\dev\\Granulate\\GranuluateLib\\GranulateLibrary.csproj": {}
   },
   "projects": {
-    "C:\\VSProjects\\Granulate_Editor\\GranuluateLib\\GranuluateLib\\GranulateLibrary.csproj": {
+    "D:\\dev\\Granulate\\GranuluateLib\\GranulateLibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\VSProjects\\Granulate_Editor\\GranuluateLib\\GranuluateLib\\GranulateLibrary.csproj",
+        "projectUniqueName": "D:\\dev\\Granulate\\GranuluateLib\\GranulateLibrary.csproj",
         "projectName": "GranulateLibrary",
-        "projectPath": "C:\\VSProjects\\Granulate_Editor\\GranuluateLib\\GranuluateLib\\GranulateLibrary.csproj",
-        "packagesPath": "C:\\Users\\CarloMercuri\\.nuget\\packages\\",
-        "outputPath": "C:\\VSProjects\\Granulate_Editor\\GranuluateLib\\GranuluateLib\\obj\\",
+        "projectPath": "D:\\dev\\Granulate\\GranuluateLib\\GranulateLibrary.csproj",
+        "packagesPath": "C:\\Users\\cmerc\\.nuget\\packages\\",
+        "outputPath": "D:\\dev\\Granulate\\GranuluateLib\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\CarloMercuri\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\cmerc\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -59,7 +62,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

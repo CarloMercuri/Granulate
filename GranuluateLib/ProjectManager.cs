@@ -9,13 +9,28 @@ namespace GranulateLibrary
 {
     public static class ProjectManager
     {
-
+        /// <summary>
+        /// List of the open projects
+        /// </summary>
         public static List<ProjectData> openProjects = new List<ProjectData>();
+
+        /// <summary>
+        /// ID of the project in focus
+        /// </summary>
         public static int CurrentProject { get; set; }
+        /// <summary>
+        /// The Main Color
+        /// </summary>
         public static Color Color_Main { get; set; }
+        /// <summary>
+        /// The Secondary, or Background color
+        /// </summary>
         public static Color Color_Secondary { get; set; }
 
 
+        /// <summary>
+        /// The Bitmap that is currently selected
+        /// </summary>
         public static int SelectedBitmap
         {
             get { return GetSelectedBitmap(); }
@@ -29,7 +44,7 @@ namespace GranulateLibrary
         // So to avoid any possible bug, we always return 0 for that type
         private static int GetSelectedBitmap()
         {
-            if(openProjects[CurrentProject].projectType == ProjectType.SingleSprite)
+            if(openProjects[CurrentProject].ProjectType == ProjectType.SingleSprite)
             {
                 return 0;
             }
@@ -70,7 +85,7 @@ namespace GranulateLibrary
             ImageEditing.FillRectangle(Color.Transparent, new Rectangle(0, 0, bmp.Width, bmp.Height), ref bmp);
 
             // Add it to the open project's bitmaps list
-            openProjects[CurrentProject].bitmaps.Add(bmp);
+            openProjects[CurrentProject].Bitmaps.Add(bmp);
         }
     }
     

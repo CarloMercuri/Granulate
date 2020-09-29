@@ -8,6 +8,9 @@ namespace GranulateLibrary
 {
     public class LastAction
     {
+        /// <summary>
+        /// List of PixelModifications that contains all the modified pixels
+        /// </summary>
         public List<PixelModification> pixelList = new List<PixelModification>();
     }
 }

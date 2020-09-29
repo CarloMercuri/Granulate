@@ -55,6 +55,54 @@ namespace GranulateLibrary
 
         }
 
+        /// <summary>
+        /// Returns a bitmap with a SQUARE checkered background image, of the specified size
+        /// </summary>
+        /// <param name="size"></param>
+        /// <returns></returns>
+        public static Bitmap CreateBackgroundImage(int size, bool test)
+        {
+            // For now fixed spacing
+            int spacing = 10;
+
+            // The two types of gray
+            int lightColor = 211;
+            int darkColor = 169;
+
+            Color _Color1 = Color.FromArgb(255, lightColor, lightColor, lightColor);
+            Color _Color2 = Color.FromArgb(255, darkColor, darkColor, darkColor);
+
+
+
+            Color curColor = _Color1;
+
+            Bitmap _bitMap = new Bitmap(size, size);
+            Graphics graphic = Graphics.FromImage(_bitMap);
+            SolidBrush myBrush = new SolidBrush(Color.Red);
+
+            for (int x = 0; x < size; x += spacing)
+            {
+                for (int y = 0; y < size; y += spacing)
+                {
+                    //FillRectangle(curColor, new Rectangle(x, y, spacing, spacing), ref _bitMap);
+                    myBrush.Color = curColor;
+                    graphic.FillRectangle(myBrush, new Rectangle(x, y, spacing, spacing));
+
+                    // Switch the colors around
+                    curColor = (curColor == _Color1) ? _Color2 : _Color1;
+
+                }
+
+                // Switch the colors around
+                curColor = (curColor == _Color1) ? _Color2 : _Color1;
+
+            }
+
+
+            return _bitMap;
+
+        }
+
 
         /// <summary>
         /// Undoes the pixel changes specified in the references ActionPixelModification
@@ -66,7 +114,7 @@ namespace GranulateLibrary
             // go through all the pixels and apply the old color value
             for (int i = 0; i < pMod.pixelsList.Count; i++)
             {
-                ProjectManager.openProjects[ProjectManager.CurrentProject].bitmaps[pMod.AffectedBitmapIndex]
+                ProjectManager.openProjects[ProjectManager.CurrentProject].Bitmaps[pMod.AffectedBitmapIndex]
                     .SetPixel(pMod.pixelsList[i].pixelLoc.x, pMod.pixelsList[i].pixelLoc.y,
                     pMod.pixelsList[i].oldColor);
             }
@@ -88,7 +136,7 @@ namespace GranulateLibrary
         {
             foreach (PixelModification pMod in pixelsList)
             {
-                ProjectManager.openProjects[projectID].bitmaps[pMod.bitmapID].SetPixel(
+                ProjectManager.openProjects[projectID].Bitmaps[pMod.bitmapID].SetPixel(
                     pMod.pixelLoc.x, pMod.pixelLoc.y, pMod.newColor);
             }
 
@@ -391,23 +439,23 @@ namespace GranulateLibrary
             if(stitchmode == StitchMode.Horizontal)
             {
                 // If horizontal, the width of the new image is going to be the sum of the width of each image in the project
-                stitchedBmp = new Bitmap(prj.ImageWidth * prj.bitmaps.Count, prj.ImageHeight);
+                stitchedBmp = new Bitmap(prj.ImageWidth * prj.Bitmaps.Count, prj.ImageHeight);
                 Graphics grPhoto = Graphics.FromImage(stitchedBmp);
 
-                for (int i = 0; i < prj.bitmaps.Count; i++)
+                for (int i = 0; i < prj.Bitmaps.Count; i++)
                 {
-                    grPhoto.DrawImage(prj.bitmaps[i], new Point(prj.ImageWidth * i, 0));
+                    grPhoto.DrawImage(prj.Bitmaps[i], new Point(prj.ImageWidth * i, 0));
                 }
             }
             else
             {
                 // If vertical, the height of the new image is going to be the sum of the heights of each image in the project
-                stitchedBmp = new Bitmap(prj.ImageWidth, prj.ImageHeight * prj.bitmaps.Count);
+                stitchedBmp = new Bitmap(prj.ImageWidth, prj.ImageHeight * prj.Bitmaps.Count);
                 Graphics grPhoto = Graphics.FromImage(stitchedBmp);
 
-                for (int i = 0; i < prj.bitmaps.Count; i++)
+                for (int i = 0; i < prj.Bitmaps.Count; i++)
                 {
-                    grPhoto.DrawImage(prj.bitmaps[i], new Point(0, prj.ImageHeight * i));
+                    grPhoto.DrawImage(prj.Bitmaps[i], new Point(0, prj.ImageHeight * i));
                 }
             }
 

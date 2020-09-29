@@ -9,10 +9,13 @@ namespace GranulateLibrary
 {
     class ActionRectangleSelection : IActionDefiner
     {
+        /// <summary>
+        /// Type of the action
+        /// </summary>
         public ActionType ActionCategory { get; set; }
 
         // Specifics
-        public Rectangle rect;
+        public Rectangle Rect { get; set; }
 
 
         public void RevertAction()

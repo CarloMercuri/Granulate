@@ -11,13 +11,33 @@ namespace GranulateLibrary
 {
     public class ProjectData
     {
-        public Bitmap backgroundBitmap;
-        public List<Bitmap> bitmaps = new List<Bitmap>();
-        public int currentBitmapIndex = 0;
+        /// <summary>
+        /// List of the bitmaps contained in this project
+        /// </summary>
+        public List<Bitmap> Bitmaps = new List<Bitmap>();
+        /// <summary>
+        /// The ID of the bitmap in focus
+        /// </summary>
+        public int CurrentBitmapIndex { get; set; }
+        /// <summary>
+        /// Standard image width of the project
+        /// </summary>
         public int ImageWidth { get; set; }
+        /// <summary>
+        /// Standard image height of the project
+        /// </summary>
         public int ImageHeight { get; set; }
-        public ProjectType projectType;
-        public List<IActionDefiner> actionHistory = new List<IActionDefiner>();
+        /// <summary>
+        /// The Type of project
+        /// </summary>
+        public ProjectType ProjectType { get; set; }
+        /// <summary>
+        /// CTRL+Z History
+        /// </summary>
+        public List<IActionDefiner> ActionHistory = new List<IActionDefiner>();
+        /// <summary>
+        /// The current index in the actionHistory list
+        /// </summary>
         private int _ActionIndex;
 
         public int ActionIndex
@@ -27,19 +47,30 @@ namespace GranulateLibrary
 
         }
 
+        public ProjectData(int _imageWidth, int _imageHeight, ProjectType _projectType)
+        {
+            CurrentBitmapIndex = 0;
+            ProjectType = _projectType;
+            ImageWidth = _imageWidth;
+            ImageHeight = _imageHeight;
+            Bitmap baseBitmap = new Bitmap(_imageWidth, _imageHeight);
+            ImageEditing.FillRectangle(Color.Transparent, new Rectangle(0, 0, _imageWidth, _imageHeight), ref baseBitmap);
+            Bitmaps.Add(baseBitmap);
+        }
+
         /// <summary>
         /// Returns the first occurrence of an action
         /// </summary>
         /// <returns></returns>
         public IActionDefiner GetLastAction()
         {
-            if(_ActionIndex > actionHistory.Count || _ActionIndex < 0)
+            if(_ActionIndex > ActionHistory.Count || _ActionIndex < 0)
             {
                 return null;
             }
             else
             {
-                return actionHistory[_ActionIndex];
+                return ActionHistory[_ActionIndex];
             }
 
 
@@ -63,15 +94,7 @@ namespace GranulateLibrary
 
         
 
-        public ProjectData(int _imageWidth, int _imageHeight, ProjectType _projectType)
-        {
-            projectType = _projectType;
-            ImageWidth = _imageWidth;
-            ImageHeight = _imageHeight;
-            Bitmap baseBitmap = new Bitmap(_imageWidth, _imageHeight);
-            ImageEditing.FillRectangle(Color.Transparent, new Rectangle(0, 0, _imageWidth, _imageHeight), ref baseBitmap);
-            bitmaps.Add(baseBitmap);
-        }
+        
 
         /// <summary>
         /// Inserts a new action into the list.
@@ -86,22 +109,22 @@ namespace GranulateLibrary
             {
                 List<IActionDefiner> tempList = new List<IActionDefiner>();
 
-                for (int i = ActionIndex; i < actionHistory.Count; i++)
+                for (int i = ActionIndex; i < ActionHistory.Count; i++)
                 {
-                    tempList.Add(actionHistory[i]);
+                    tempList.Add(ActionHistory[i]);
                 }
 
-                actionHistory = tempList;
+                ActionHistory = tempList;
 
             }
             
             // At this point it's safe to insert the action on top
-            actionHistory.Insert(0, _lastAction);
+            ActionHistory.Insert(0, _lastAction);
 
             // Keep the list at the max count
-            if(actionHistory.Count > GeneralSettings.MaxHistoryCount)
+            if(ActionHistory.Count > GeneralSettings.MaxHistoryCount)
             {
-                actionHistory.RemoveAt(actionHistory.Count - 1);
+                ActionHistory.RemoveAt(ActionHistory.Count - 1);
             }
 
             // Reselect the top action
