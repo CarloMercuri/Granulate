@@ -5,5 +5,11 @@ Editor for sprite sheets, animations, pixel art.
 - Functionalities will include an animation preview, several tools to help with pixel drawing, and an easy
   file manager / uploader.
   
+  // IMPLEMENTED //
+  
+  - Support for multiple bitmaps
+  - Zoom functionality
+  - Sequential undo from history (ctrl + z)
+  
 
 
