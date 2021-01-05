@@ -25,3 +25,12 @@ D:\dev\Granulate\GranuluateLib\obj\Debug\netstandard2.0\GranulateLibrary.Assembl
 D:\dev\Granulate\GranuluateLib\obj\Debug\netstandard2.0\GranulateLibrary.csproj.CoreCompileInputs.cache
 D:\dev\Granulate\GranuluateLib\obj\Debug\netstandard2.0\GranulateLibrary.dll
 D:\dev\Granulate\GranuluateLib\obj\Debug\netstandard2.0\GranulateLibrary.pdb
+D:\dev\newNewGranulate\Granulate\GranuluateLib\bin\Debug\netstandard2.0\GranulateLibrary.deps.json
+D:\dev\newNewGranulate\Granulate\GranuluateLib\bin\Debug\netstandard2.0\GranulateLibrary.dll
+D:\dev\newNewGranulate\Granulate\GranuluateLib\bin\Debug\netstandard2.0\GranulateLibrary.pdb
+D:\dev\newNewGranulate\Granulate\GranuluateLib\obj\Debug\netstandard2.0\GranulateLibrary.csprojAssemblyReference.cache
+D:\dev\newNewGranulate\Granulate\GranuluateLib\obj\Debug\netstandard2.0\GranulateLibrary.AssemblyInfoInputs.cache
+D:\dev\newNewGranulate\Granulate\GranuluateLib\obj\Debug\netstandard2.0\GranulateLibrary.AssemblyInfo.cs
+D:\dev\newNewGranulate\Granulate\GranuluateLib\obj\Debug\netstandard2.0\GranulateLibrary.csproj.CoreCompileInputs.cache
+D:\dev\newNewGranulate\Granulate\GranuluateLib\obj\Debug\netstandard2.0\GranulateLibrary.dll
+D:\dev\newNewGranulate\Granulate\GranuluateLib\obj\Debug\netstandard2.0\GranulateLibrary.pdb

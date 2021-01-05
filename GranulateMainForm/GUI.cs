@@ -98,42 +98,52 @@ namespace GranulateMainForm
             mainBackground_Bitmap = ImageEditing.CreateBackgroundImage(1600);
             CreateNewProject(32, 32, ProjectType.SpriteAnimation);
 
-            MainImagePanel = new Panel();
+            MainImagePanel = new Panel() 
+            {
+                Location = new Point(400, 142),
+                Size = new Size(1200, 800),
+                BackColor = Color_Default_DarkGray,
+                BorderStyle = BorderStyle.Fixed3D
+            };
+
             mainForm.Controls.Add(MainImagePanel);
-            MainImagePanel.Location = new Point(400, 142);
-            //MainImagePanel.Anchor = (AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right);
-            MainImagePanel.Size = new Size(1200, 800);
-            MainImagePanel.BackColor = Color_Default_DarkGray;
-            MainImagePanel.BorderStyle = BorderStyle.Fixed3D;
-            
 
-            MainImage_PB_Background = new PictureBox();
-            MainImage_PB_Main = new PictureBox();
-            MainImage_PB_Main.BackColor = Color.Transparent;
 
-            MainImage_PB_Main.Location = new Point(0, 0);
+            // Initialization
+
+            MainImage_PB_Main = new PictureBox()
+            {
+                BackColor = Color.Transparent,
+                Location = new Point(0, 0),
+                BorderStyle = BorderStyle.None,
+                SizeMode = PictureBoxSizeMode.Normal
+            };
+
+            MainImage_PB_Background = new PictureBox()
+            {
+                Image = mainBackground_Bitmap,
+                Location = new Point(0, 0),
+                Width = MainImage_PB_Main.Width,
+                Height = MainImage_PB_Main.Height
+            };
+
+
+ 
+            // Controls
             MainImagePanel.Controls.Add(MainImage_PB_Background);
             MainImage_PB_Background.Controls.Add(MainImage_PB_Main);
 
-            MainImage_PB_Background.Image = mainBackground_Bitmap;
-            MainImage_PB_Background.Location = new Point(0, 0);
-            MainImage_PB_Background.Width = MainImage_PB_Main.Width;
-            MainImage_PB_Background.Height = MainImage_PB_Main.Height;
 
-            //MainImage_PB_Main.SizeMode = PictureBoxSizeMode.StretchImage;
+            // Event Handlers
             MainImage_PB_Main.Paint += new PaintEventHandler(MainPB_Paint);
             MainImage_PB_Main.MouseWheel += new MouseEventHandler(MainPB_MouseWheel);
             MainImage_PB_Main.MouseDown += new MouseEventHandler(MainPB_MouseDown);
             MainImage_PB_Main.MouseUp += new MouseEventHandler(MainPB_MouseUp);
             MainImage_PB_Main.MouseMove += new MouseEventHandler(MainPB_MouseMove);
-
-
             MainImage_PB_Main.MouseEnter += new EventHandler(MainPB_MouseEnter);
             MainImage_PB_Main.MouseLeave += new EventHandler(MainPB_MouseLeave);
-            MainImage_PB_Main.BorderStyle = BorderStyle.None;
-            MainImage_PB_Main.SizeMode = PictureBoxSizeMode.Normal;
 
-            //RecenterMainPB();
+
             ZoomMainImage(1);
             MainImage_PB_Main.Invalidate();
 
@@ -143,20 +153,28 @@ namespace GranulateMainForm
             ImageEditing.ImageModifiedEvent += PixelsModifiedEvent;
 
 
-
+            // Initialize elements based on the type of project
 
             switch (ProjectManager.openProjects[ProjectManager.CurrentProject].ProjectType)
             {
                 case ProjectType.SpriteAnimation:
+
+                    
                     InitializeAnimationWindow();
-                    plusButton = new Button();
+
+                    // Creates the first preview window and add a plus button
                     CreateNewPreviewPB(0);
 
+                    plusButton = new Button()
+                    {
+                        Image = plusSign,
+                        Location = new Point(2 + previewWindows.Count * 90, 30),
+                        Size = new Size(30, 30),
+                    };
+
                     panel_ProjectImageList.Controls.Add(plusButton);
-                    plusButton.Image = plusSign;
-                    plusButton.Location = new Point(2 + previewWindows.Count * 90, 30);
-                    plusButton.Size = new Size(30, 30);
                     plusButton.Click += new EventHandler(PlusButtonClick);
+
                     break;
 
                 default:
@@ -199,30 +217,37 @@ namespace GranulateMainForm
 
         private static void InitializeColorSelector()
         {
-            Panel_ColorSelectorBG = new Panel();
+            Panel_ColorSelectorBG = new Panel()
+            {
+                BackColor = Color.FromArgb(255, 100, 100, 100),
+                BorderStyle = BorderStyle.None,
+                Location = new Point(12, 12),
+                Size = new Size(180, 160)
+            };
+
             mainForm.Controls.Add(Panel_ColorSelectorBG);
-            Panel_ColorSelectorBG.BackColor = Color.FromArgb(255, 100, 100, 100);
-            Panel_ColorSelectorBG.BorderStyle = BorderStyle.None;
-            Panel_ColorSelectorBG.Location = new Point(12, 12);
-            Panel_ColorSelectorBG.Size = new Size(180, 160);
 
             PaletteSelectionLoc = new Vec2(50, 50);
 
-            PB_ColorPalette = new PictureBox();
+            PB_ColorPalette = new PictureBox()
+            {
+                Location = new Point(3, 3),
+                SizeMode = PictureBoxSizeMode.AutoSize,
+                Image = ImageEditing.CreateColorPaletteImage(Color.FromArgb(255, 0, 0, 255))
+            };
+
             Panel_ColorSelectorBG.Controls.Add(PB_ColorPalette);
-            PB_ColorPalette.Location = new Point(3, 3);
-            PB_ColorPalette.SizeMode = PictureBoxSizeMode.AutoSize;
-            PB_ColorPalette.Image = ImageEditing.CreateColorPaletteImage(Color.FromArgb(255, 0, 0, 255));
 
+            PB_ColorSelector = new PictureBox()
+            {
+                Location = new Point(148, 3),
+                SizeMode = PictureBoxSizeMode.AutoSize,
+                Image = ImageEditing.CreateColorSelectorImage()
+            };
 
-
-            PB_ColorSelector = new PictureBox();
             Panel_ColorSelectorBG.Controls.Add(PB_ColorSelector);
-            PB_ColorSelector.Location = new Point(148, 3);
-            PB_ColorSelector.SizeMode = PictureBoxSizeMode.AutoSize;
-            PB_ColorSelector.Image = ImageEditing.CreateColorSelectorImage();
 
-            // Assign controls
+            // EventHandlers
             PB_ColorPalette.Paint += new PaintEventHandler(GUI.PB_ColorPalette_Paint);
             PB_ColorPalette.MouseDown += new MouseEventHandler(PB_ColorPalette_MouseDown);
             PB_ColorPalette.MouseLeave += new EventHandler(PB_ColorPalette_MouseLeave);
@@ -240,81 +265,102 @@ namespace GranulateMainForm
 
             // R
 
-            Color_R_Label = new Label();
-            Panel_ColorSelectorBG.Controls.Add(Color_R_Label);
-            Color_R_Label.Location = new Point(curLabelLocX, 133);
-            Color_R_Label.BackColor = Color.FromArgb(0, 0, 0, 0);
-            Color_R_Label.ForeColor = Color.White;
-            Color_R_Label.Size = new Size(15, 15);
-            //Color_R_Label.Font = new Font()
-            Color_R_Label.Text = "R";
+            Color_R_Label = new Label()
+            {
+                Location = new Point(curLabelLocX, 133),
+                BackColor = Color.FromArgb(0, 0, 0, 0),
+                ForeColor = Color.White,
+                Size = new Size(15, 15),
+                Text = "R"
+            };
 
-            Color_R_Selector = new NumericUpDown();
-            Color_R_Selector.BackColor = Color.FromArgb(255, 90, 90, 90);
-            Color_R_Selector.ForeColor = Color.FromArgb(255, 255, 255, 255);
+            Panel_ColorSelectorBG.Controls.Add(Color_R_Label);
+
+
+            Color_R_Selector = new NumericUpDown()
+            {
+                BackColor = Color.FromArgb(255, 90, 90, 90),
+                ForeColor = Color.FromArgb(255, 255, 255, 255),
+                Location = new Point(curSelectorLocX, 130),
+                Size = new Size(40, 10),
+                Minimum = 0,
+                Maximum = 255
+            };
+
             Panel_ColorSelectorBG.Controls.Add(Color_R_Selector);
-            Color_R_Selector.Location = new Point(curSelectorLocX, 130);
-            Color_R_Selector.Size = new Size(40, 10);
-            Color_R_Selector.Minimum = 0;
-            Color_R_Selector.Maximum = 255;
 
             curLabelLocX += spacing;
             curSelectorLocX += spacing;
 
             // G
 
-            Color_G_Label = new Label();
-            Panel_ColorSelectorBG.Controls.Add(Color_G_Label);
-            Color_G_Label.Location = new Point(curLabelLocX, 133);
-            Color_G_Label.BackColor = Color.FromArgb(0, 0, 0, 0);
-            Color_G_Label.ForeColor = Color.White;
-            Color_G_Label.Size = new Size(15, 15);
-            //Color_R_Label.Font = new Font()
-            Color_G_Label.Text = "G";
+            Color_G_Label = new Label()
+            {
+                Location = new Point(curLabelLocX, 133),
+                BackColor = Color.FromArgb(0, 0, 0, 0),
+                ForeColor = Color.White,
+                Size = new Size(15, 15),
+                Text = "G"
+            };
 
-            Color_G_Selector = new NumericUpDown();
-            Color_G_Selector.BackColor = Color.FromArgb(255, 90, 90, 90);
-            Color_G_Selector.ForeColor = Color.FromArgb(255, 255, 255, 255);
+            Panel_ColorSelectorBG.Controls.Add(Color_G_Label);
+
+           
+
+            Color_G_Selector = new NumericUpDown()
+            {
+                BackColor = Color.FromArgb(255, 90, 90, 90),
+                ForeColor = Color.FromArgb(255, 255, 255, 255),
+                Location = new Point(curSelectorLocX, 130),
+                Size = new Size(40, 10),
+                Minimum = 0,
+                Maximum = 255
+            };
+
             Panel_ColorSelectorBG.Controls.Add(Color_G_Selector);
-            Color_G_Selector.Location = new Point(curSelectorLocX, 130);
-            Color_G_Selector.Size = new Size(40, 10);
-            Color_G_Selector.Minimum = 0;
-            Color_G_Selector.Maximum = 255;
+
 
             curLabelLocX += spacing;
             curSelectorLocX += spacing;
 
             // B
 
-            Color_B_Label = new Label();
-            Panel_ColorSelectorBG.Controls.Add(Color_B_Label);
-            Color_B_Label.Location = new Point(curLabelLocX, 133);
-            Color_B_Label.BackColor = Color.FromArgb(0, 0, 0, 0);
-            Color_B_Label.ForeColor = Color.White;
-            Color_B_Label.Size = new Size(15, 15);
-            //Color_R_Label.Font = new Font()
-            Color_R_Label.Text = "B";
+            Color_B_Label = new Label()
+            {
+                Location = new Point(curLabelLocX, 133),
+                BackColor = Color.FromArgb(0, 0, 0, 0),
+                ForeColor = Color.White,
+                Size = new Size(15, 15),
+                Text = "B"
+            };
 
-            Color_B_Selector = new NumericUpDown();
-            Color_B_Selector.BackColor = Color.FromArgb(255, 90, 90, 90);
-            Color_B_Selector.ForeColor = Color.FromArgb(255, 255, 255, 255);
+            Panel_ColorSelectorBG.Controls.Add(Color_B_Label);
+
+            Color_B_Selector = new NumericUpDown()
+            {
+                BackColor = Color.FromArgb(255, 90, 90, 90),
+                ForeColor = Color.FromArgb(255, 255, 255, 255),
+                Location = new Point(curSelectorLocX, 130),
+                Size = new Size(40, 10),
+                Minimum = 0,
+                Maximum = 255
+            };
+
             Panel_ColorSelectorBG.Controls.Add(Color_B_Selector);
-            Color_B_Selector.Location = new Point(curSelectorLocX, 130);
-            Color_B_Selector.Size = new Size(40, 10);
-            Color_B_Selector.Minimum = 0;
-            Color_B_Selector.Maximum = 255;
+
+           
 
 
             // Coords label
-            label_Coords = new Label();
+            label_Coords = new Label()
+            {
+                Font = new Font(FontFamily.GenericSansSerif, 10, FontStyle.Bold),
+                Text = "0, 0",
+                Location = new Point(49, 3),
+                Size = new Size(70, 22)
+            };
+
             panel_Bottom.Controls.Add(label_Coords);
-            label_Coords.Font = new Font(FontFamily.GenericSansSerif, 10, FontStyle.Bold);
-            label_Coords.Text = "0, 0";
-            label_Coords.Location = new Point(49, 3);
-            label_Coords.Size = new Size(70, 22);
-
-
-
         }
 
         /// <summary>
@@ -408,43 +454,52 @@ namespace GranulateMainForm
 
         private static void InitializeAnimationWindow()
         {
-            Panel_AnimationWindow = new Panel();
+            Panel_AnimationWindow = new Panel()
+            {
+                Anchor = (AnchorStyles.Right | AnchorStyles.Top),
+                Size = new Size(195, 220),
+                BackColor = Color_Default_DarkGray,
+                BorderStyle = BorderStyle.Fixed3D,
+                Location = new Point(700, 12)
+            };
+
             mainForm.Controls.Add(Panel_AnimationWindow);
-            Panel_AnimationWindow.Anchor = (AnchorStyles.Right | AnchorStyles.Top);
-            Panel_AnimationWindow.Size = new Size(195, 220);
-            Panel_AnimationWindow.BackColor = Color_Default_DarkGray;
-            Panel_AnimationWindow.BorderStyle = BorderStyle.Fixed3D;
-            Panel_AnimationWindow.Location = new Point(700, 12);
 
+            PB_AnimationWindow_BG = new PictureBox()
+            { 
+                Location = new Point(5, 5),
+                Size = new Size(animationWindowSize, animationWindowSize),
+                Image = ImageEditing.CreateBackgroundImage(animationWindowSize)
+            };
 
-            PB_AnimationWindow_BG = new PictureBox();
             Panel_AnimationWindow.Controls.Add(PB_AnimationWindow_BG);
-            PB_AnimationWindow_BG.Location = new Point(5, 5);
-            PB_AnimationWindow_BG.Size = new Size(animationWindowSize, animationWindowSize);
-            PB_AnimationWindow_BG.Image = ImageEditing.CreateBackgroundImage(animationWindowSize);
 
-            PB_AnimationWindow_Main = new PictureBox();
-            PB_AnimationWindow_Main.BorderStyle = BorderStyle.Fixed3D;
+
+            PB_AnimationWindow_Main = new PictureBox()
+            {
+                BorderStyle = BorderStyle.Fixed3D,
+                Size = PB_AnimationWindow_BG.Size,
+                BackColor = Color.Transparent
+            };
+
             PB_AnimationWindow_BG.Controls.Add(PB_AnimationWindow_Main);
-            PB_AnimationWindow_Main.Size = PB_AnimationWindow_BG.Size;
-            PB_AnimationWindow_Main.BackColor = Color.Transparent;
 
 
-            playPauseButton = new Button();
+            playPauseButton = new Button()
+            {
+                Size = new Size(26, 26),
+                Location = new Point(5, 187),
+                Image = playPauseButtonImage,
+                Name = "Anim_Button_Play"
+            };
+
             Panel_AnimationWindow.Controls.Add(playPauseButton);
-            playPauseButton.Size = new Size(26, 26);
-            playPauseButton.Location = new Point(5, 187);
-            playPauseButton.Image = playPauseButtonImage;
-            playPauseButton.Name = "Anim_Button_Play";
-            //playPauseButton.FlatStyle = FlatStyle.Flat;
+            
 
 
             _animWindow = new AnimationWindow(PB_AnimationWindow_Main, 5, 32);
             animationWindowthread = new Thread(new ThreadStart(_animWindow.AnimationLoop));
             animationWindowthread.Start();
-
-            //AnimationWindow_PB.Paint += new PaintEventHandler(_animWindow.AnimationPB_Paint);
-            
 
         }
 
@@ -479,32 +534,41 @@ namespace GranulateMainForm
 
         private static void InitializeToolBar()
         {
-            toolsPanel = new Panel();
-            toolsPanel.Location = new Point(20, 242);
-            toolsPanel.Size = new Size(150, 100);
-            toolsPanel.BackColor = Color.FromArgb(255, 80, 80, 80);
+            toolsPanel = new Panel()
+            {
+                Location = new Point(20, 242),
+                Size = new Size(150, 100),
+                BackColor = Color.FromArgb(255, 80, 80, 80)
+            };
+            
             mainForm.Controls.Add(toolsPanel);
 
             // Pencil
             toolsButtons = new List<Button>();
-            toolsButtons.Add(new Button());
+            toolsButtons.Add(new Button()
+            {
+                Size = new Size(35, 35),
+                Image = ToolsManager.toolsList[0].NormalButtonImage,
+                Name = "toolButton_0",
+                FlatStyle = FlatStyle.Flat,
 
-            toolsPanel.Controls.Add(toolsButtons[0]);
-            toolsButtons[0].Size = new Size(35, 35);
-            toolsButtons[0].Image = ToolsManager.toolsList[0].NormalButtonImage;
-            toolsButtons[0].Name = "toolButton_0";
-            toolsButtons[0].FlatStyle = FlatStyle.Flat;
+            });
+
             toolsButtons[0].Click += new EventHandler(ToolButtonPressed);
+            toolsPanel.Controls.Add(toolsButtons[0]);
 
             // Eraser
-            toolsButtons.Add(new Button());
-            toolsPanel.Controls.Add(toolsButtons[1]);
-            toolsButtons[1].Size = new Size(35, 35);
-            toolsButtons[1].Location = new Point(38, 0);
-            toolsButtons[1].Name = "toolButton_1";
-            toolsButtons[1].FlatStyle = FlatStyle.Flat;
-            toolsButtons[1].Image = ToolsManager.toolsList[1].NormalButtonImage;
+            toolsButtons.Add(new Button()
+            {
+                Size = new Size(35, 35),
+                Location = new Point(38, 0),
+                Name = "toolButton_1",
+                FlatStyle = FlatStyle.Flat,
+                Image = ToolsManager.toolsList[1].NormalButtonImage
+            });
+
             toolsButtons[1].Click += new EventHandler(ToolButtonPressed);
+            toolsPanel.Controls.Add(toolsButtons[1]);
 
         }
 
@@ -512,13 +576,17 @@ namespace GranulateMainForm
         {
             previewWindows.Add(new PreviewWindow());
             previewWindows[index].id = index;
-            previewWindows[index].backPanel = new Panel();
+            previewWindows[index].backPanel = new Panel()
+            {
+                Size = new Size(85, 85),
+                Location = new Point(3 + index * smallPictureBoxSpacing, 3),
+                BackColor = Color.Black
+            };
+
             panel_ProjectImageList.Controls.Add(previewWindows[index].backPanel);
-            previewWindows[index].backPanel.Size = new Size(85, 85);
-            previewWindows[index].backPanel.Location = new Point(3 + index * smallPictureBoxSpacing, 3);
-            previewWindows[index].backPanel.BackColor = Color.Black;
 
 
+            // This breaks otherwise. TO DO: Reformat it
             previewWindows[index].pb_Main = new PictureBox();
             previewWindows[index].pb_Background = new PictureBox();
             previewWindows[index].pb_Main.Name = "PreviewImage_" + index;
